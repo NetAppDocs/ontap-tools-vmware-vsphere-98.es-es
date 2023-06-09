@@ -1,0 +1,16 @@
+---
+permalink: deploy/concept_installation_workflow_for_new_users.html 
+sidebar: sidebar 
+keywords:  
+summary: Si es nuevo en VMware y nunca ha utilizado un producto VSC de NetApp, debe configurar su instancia de vCenter Server y configurar un host ESXi, antes de poner en marcha y configurar las herramientas de ONTAP. 
+---
+= Flujo de trabajo de implementación para nuevos usuarios de herramientas de ONTAP para VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si es nuevo en VMware y nunca ha utilizado un producto VSC de NetApp, debe configurar su instancia de vCenter Server y configurar un host ESXi, antes de poner en marcha y configurar las herramientas de ONTAP.
+
+image::../media/new_user_deployment_workflow_vsc_vp_and_sra_7_0.gif[Nuevo flujo de trabajo de implementación de usuario]

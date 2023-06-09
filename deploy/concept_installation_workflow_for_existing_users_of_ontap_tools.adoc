@@ -1,0 +1,57 @@
+---
+permalink: deploy/concept_installation_workflow_for_existing_users_of_ontap_tools.html 
+sidebar: sidebar 
+keywords:  
+summary: Las versiones 9.x de las herramientas de ONTAP para VMware vSphere admiten la actualización sin movimiento a la versión más reciente. 
+---
+= Flujo de trabajo de implementación para usuarios existentes de herramientas de ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Las versiones 9.x de las herramientas de ONTAP para VMware vSphere admiten la actualización sin movimiento a la versión más reciente.
+
+Las versiones anteriores de aplicaciones individuales, como las herramientas de ONTAP, utilizan un proceso de actualización diferente. Si tiene instalado VSC o VASA Provider o SRA en la configuración, debe realizar las siguientes operaciones:
+
+. Implemente la última versión de las herramientas de ONTAP.
+. Migre los datos de configuración existentes.
++
+Los datos de configuración incluyen las credenciales del sistema de almacenamiento, así como las preferencias que se encuentran en `kaminoprefs.xml` y.. `vscPreferences.xml`   archivos.
+
+
+
+link:../configure/reference_set_ipv4_or_ipv6.html["Utilice el archivo de preferencias para establecer IPv4 o IPv6"]
+
+En muchos casos, es posible que no sea necesario migrar datos de configuración. Sin embargo, si ha personalizado los archivos de preferencias anteriormente, quizás desee revisarlos y realizar cambios similares en las herramientas ONTAP recién implementadas. Puede realizar una de las siguientes acciones:
+
+* Uso https://mysupport.netapp.com/tools/index.html["Utilidad de importación de NetApp para SnapCenter y Virtual Storage Console"] Para migrar las credenciales del sistema de almacenamiento de VSC 6.X y SRA 4.X a la nueva implementación.
+* Añada los sistemas de almacenamiento a las herramientas ONTAP recién implementadas y especifique las credenciales a medida que las añade.
+
+
+Si va a actualizar desde VASA Provider 6.X, debe cancelar el registro del proveedor VASA antes de la actualización. Consulte la documentación de su versión actual para obtener más detalles.
+
+Si también va a actualizar desde SRA 4.0 o una versión anterior:
+
+* Si utiliza SRA 4.0P1, primero debe actualizar a SRA9.6 y solo entonces puede realizar una actualización in situ de SRA 9.6 a la última versión.
++
+link:../deploy/task_upgrade_to_the_9_8_ontap_tools_for_vmware_vsphere.html["Actualice a la versión más reciente de herramientas de ONTAP"]
+
+* Si utiliza SRA 2.1 o 3.0, primero debe tomar nota de los detalles de configuración del sitio existente.
++
+_Guía de instalación y configuración del adaptador de replicación de almacenamiento 4.0 para ONTAP_ contiene las instrucciones detalladas en la sección "Descripción general de la actualización". Estas versiones de SRA también usan el proveedor de VASA, por lo que debe cancelar el registro del proveedor de VASA y, a continuación, implementar la versión más reciente de las herramientas de ONTAP. La versión anterior del servidor (`.ova`) se puede quitar cuando la actualización se haya completado.
+
+
+
+Para cualquier actualización del SRA, el software del SRA (el adaptador del servidor del Site Recovery Manager, instalado por el `.msi` Archivo) debe eliminarse del servidor de Site Recovery Manager. Puede utilizar el panel de control del sistema de Windows para desinstalar el software y, a continuación, instalar el software del SRA más reciente en el servidor SRA mediante el `.msi` archivo.
+
+Si tiene la puesta en marcha del proveedor de VASA, después de la actualización desde la configuración existente, debe configurar el tamaño de memoria para que las herramientas de ONTAP sean de 12 GB con el `Edit Settings` opción. También debe modificar la reserva de memoria virtual. La máquina virtual debe estar apagada para modificar el tamaño de la memoria.
+
+Si dispone de la versión 7,2 o 7.2.1 de las herramientas de ONTAP en la configuración, no podrá actualizar directamente a 9.7P1 o una versión posterior de las herramientas de ONTAP. Primero, debe actualizar la configuración existente a la versión 9,7 de herramientas de ONTAP y, a continuación, actualizar a la versión más reciente.
+
+Si va a poner en marcha la última versión de herramientas de ONTAP, debe ver el tema ««Requisitos para poner en marcha las herramientas de ONTAP». El tema «`Actualización a la versión 9,8 de ONTAP tools` » contiene información sobre cómo realizar una actualización in situ.
+
+*Información relacionada*
+
+https://mysupport.netapp.com/site/tools[]
